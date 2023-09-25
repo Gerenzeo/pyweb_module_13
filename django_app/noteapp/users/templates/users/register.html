@@ -1,0 +1,65 @@
+{% extends "authors/base.html" %}
+
+{% block content %}
+<h1>Sign Up</h1>
+<style>
+    .form-row {
+        margin-bottom: 10px;
+    }
+    input {
+        padding: 10px;
+        font-size: 15px;
+        display: block;
+    }
+    button {
+        padding: 10px 17px;
+        cursor: pointer;
+    }
+</style>
+<form method="post">
+    {% csrf_token %}
+    <div class="form-row">
+        <div class="mb-3">
+            <label class="form-label">Username</label>
+            {{form.username}}
+        </div>
+        <span>{{form.errors.username}}</span>
+    </div>
+    <div class="form-row">
+        <div class="mb-3">
+            <label class="form-label">First name</label>
+            {{form.first_name}}
+        </div>
+        <span>{{form.errors.first_name}}</span>
+    </div>
+    <div class="form-row">
+        <div class="mb-3">
+            <label class="form-label">Last name</label>
+            {{form.last_name}}
+        </div>
+        <span>{{form.errors.last_name}}</span>
+    </div>
+    <div class="form-row">
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            {{form.email}}
+        </div>
+        <span>{{form.errors.email}}</span>
+    </div>
+    <div class="form-row">
+        <div class="mb-3">
+            <label class="form-label">Password</label>
+            {{form.password1}}
+        </div>
+        <span>{{form.errors.password1}}</span>
+    </div>
+    <div class="form-row">
+        <div class="mb-3">
+            <label class="form-label">Confirm password</label>
+            {{form.password2}}
+        </div>
+        <span>{{form.errors.password2}}</span>
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+{% endblock %}

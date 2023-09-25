@@ -1,0 +1,32 @@
+<h1>Create quote</h1>
+
+<a href="/">Return to home page</a>
+
+<form method="POST" action="">
+    {% csrf_token %}
+    <div style="padding: 10px">
+        <label>Tags:
+            {{form.tags}}
+        </label>
+        <span>{{ form.errors.name }}</span>
+    </div>
+
+    <div style="padding: 10px">
+        <label>Author:
+            {{form.author}}
+        </label>
+        <span>{{ form.errors.name }}</span>
+    </div>
+
+    <div style="padding: 10px">
+        <label>Quote:
+            {{form.quote}}
+        </label>
+        <span>{{ form.errors.name }}</span>
+    </div>
+
+    <div class="grid">
+        <button type="submit">Submit</button>
+        <button type="reset" class="secondary">Reset</button>
+    </div>
+</form>

@@ -1,0 +1,12 @@
+{% extends "authors/base.html" %}
+
+{% block content %}
+<div class="author-block">
+    <h1>{{author.fullname}}</h1>
+    <h2><b>Born:</b>{{author.born_date}} in {{author.born_location}}</h2>
+    <b>Description:</b>
+    <div>
+        <p>{{author.description}}</p>
+    </div>
+</div>
+{% endblock %}

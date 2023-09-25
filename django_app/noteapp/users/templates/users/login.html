@@ -1,0 +1,61 @@
+{% extends "authors/base.html" %}
+
+{% block content %}
+<h1>Login</h1>
+<style>
+    .form-row {
+        margin-bottom: 10px;
+    }
+    input {
+        padding: 10px;
+        font-size: 15px;
+        display: block;
+    }
+    button {
+        padding: 10px 17px;
+        cursor: pointer;
+    }
+</style>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{message.tags}}" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% if form.errors %}
+    <div class="alert alert-{{message.tags}}" role="alert">
+        {{ form.non_field_errors }}
+    </div>
+{% endif %}
+
+
+<form method="post">
+    {% csrf_token %}
+    <div class="form-row">
+        <div class="mb-3">
+            <label class="form-label">Username</label>
+            {{form.username}}
+        </div>
+        <span>{{form.errors.username}}</span>
+    </div>
+    <div class="form-row">
+        <div class="mb-3">
+            <label class="form-label">Password</label>
+            {{form.password}}
+        </div>
+        <span>{{form.errors.password}}</span>
+    </div>
+
+    <button type="submit" >Login</button>
+
+    <div class="register">
+        <p>Don't have account yet? <a href="/register">Register here</a></p>
+    </div>
+    <div class="small text-center">
+        <a href="{% url 'users:password_reset' %}" class="text-center"><i>Forgot Password?</i></a>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "authors/base.html" %}
+
+{% block content %}
+
+
+<section class="container">
+    <div class="left">
+        <div class="quotes">
+            {% if tags %}
+                {% for quote in quote_page %}
+                     <div class="quote">
+                        <div class="quote-text">
+                            <p>{{ quote.quote }}</p>
+                        </div>
+                        <div class="quote-author">
+                            <p>by <small>{{ quote.author }}</small><span><a href="author/{{quote.author.id}}">(About)</a></span></p>
+                        </div>
+                        <div class="quote-tags">
+                            <h3>Tags:</h3>
+                            {% for tag in quote.tags.all %}
+                            <a href="{% url 'authors:main' %}tag/{{tag.tagname}}"><div class="tag">{{tag}}</div></a>
+                            {% endfor %}
+                        </div>
+                     </div>
+                {% endfor %}
+            {% else %}
+                <p>No quotes available.</p>
+            {% endif %}
+            <div class="pagination">
+                <span class="step-links">
+                    {% if quote_page.has_previous %}
+                        <a href="?page={{ quote_page.previous_page_number }}">previous</a>
+                    {% endif %}
+                    {% if quote_page.has_next %}
+                        <a href="?page={{ quote_page.next_page_number }}">next</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        <h1>Top Ten tags</h1>
+        <div class="tags">
+            {% if tags %}
+                {% for tag in tags %}
+                    <a href="{% url 'authors:main' %}tag/{{tag}}"><div class="tag tag-{{ forloop.counter }}">{{ tag }}</div></a>
+                {% endfor %}
+            {% else %}
+                <p>No tags available.</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+
+

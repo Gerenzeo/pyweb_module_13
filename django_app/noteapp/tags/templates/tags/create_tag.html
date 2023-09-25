@@ -1,0 +1,16 @@
+<h1>Create tag</h1>
+<a href="/">Return to home page</a>
+<form method="POST" action="">
+    {% csrf_token %}
+    <div style="padding: 10px">
+        <label>tag:
+            {{form.tagname}}
+        </label>
+        <span>{{ form.errors.name }}</span>
+    </div>
+
+    <div class="grid">
+        <button type="submit">Submit</button>
+        <button type="reset" class="secondary">Reset</button>
+    </div>
+</form>

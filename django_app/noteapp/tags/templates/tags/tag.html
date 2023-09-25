@@ -1,0 +1,23 @@
+{% extends "authors/base.html" %}
+
+
+{% block content %}
+    <h1>Viewing tag: <span style="color: #4582ec;">{{tag.tagname}}</span></h1>
+    {% for quote in quotes_with_tag %}
+        <div class="quote" style="margin-top: 20px;">
+            <div class="quote-text">
+                <p>{{ quote.quote }}</p>
+            </div>
+            <div class="quote-author">
+                <p>by <small>{{ quote.author }}</small><span><a href="author/{{quote.author.id}}">(About)</a></span></p>
+            </div>
+            <div class="quote-tags">
+                <h3>Tags:</h3>
+                {% for tag in quote.tags.all %}
+                <a href="{% url 'authors:main' %}tag/{{tag}}" style="margin: 5px;"><div class="tag">{{tag}}</div></a>
+                {% endfor %}
+            </div>
+         </div>
+    {% endfor %}
+
+{% endblock %}
